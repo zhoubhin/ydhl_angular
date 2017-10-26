@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="css/ZUI.min.css">
+    <link rel="stylesheet" href="plugins/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+    <title>移动护理后台 | 客户端版本信息</title>
+    <!--[if lt IE 9]-->
+    <!--<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>-->
+    <!--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
+    <!--[endif]-->
+</head>
+<body ng-app="ydhlApp" class="hold-transition skin-blue sidebar-mini" onload="">
+<div class="wrapper">
+    <header ng-include="'common/header.html'"></header>
+    <aside ng-include="'common/aside.html'"></aside>
+    <div class="content-wrapper" ng-controller="apkController">
+        <section class="content-header">
+            <h1>移动护理管理后台
+                <small>控制面板</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="javascript:;"><i class="fa fa-dashboard"></i>控制面板</a></li>
+                <li class="active">客户端版本信息</li>
+            </ol>
+        </section>
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">客户端更新信息</h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-responsive" id="version">
+                                        <tr>
+                                            <th>版本号</th>
+                                            <th>版本名称</th>
+                                            <th>应用名称</th>
+                                            <th>更新提示</th>
+                                            <th>更新日志</th>
+                                            <th>安装包下载地址</th>
+                                        </tr>
+                                        <tr>
+                                            <th>{{lastApk.versionCode}}</th>
+                                            <th>{{lastApk.versionName}}</th>
+                                            <th>{{lastApk.appName}}</th>
+                                            <th>{{lastApk.updateTips}}</th>
+                                            <th>{{lastApk.changeLog}}</th>
+                                            <th>{{lastApk.apkUrl}}</th>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">客户端信息添加</h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-responsive">
+                                        <tr>
+                                            <td><input type="text" class="form-control" ng-model="newApk.versionCode" name="versionCode" placeholder="版本号"></td>
+                                            <td><input type="text" class="form-control" ng-model="newApk.versionName" name="versionName" placeholder="版本名称"></td>
+                                            <td><input type="text" class="form-control" ng-model="newApk.changeLog" name="changeLog" placeholder="更新日志"></td>
+                                            <td><input type="text" class="form-control" ng-model="newApk.updateTips" name="updateTips" placeholder="更新提示"></td>
+                                            <td><input type="text" class="form-control" ng-model="newApk.appName" name="appName" placeholder="应用名称"></td>
+                                            <td><input type="text" class="form-control" ng-model="newApk.apkUrl" name="apkUrl" placeholder="安装包下载地址"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-primary" ng-click="addApk()">添加版本更新信息</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<script src="js/lib/jQuery-2.1.4.min.js"></script>
+<script src="js/lib/angular.min.js"></script>
+<script src="js/lib/AdminLTE.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/controller/apk.js"></script>
+</body>
+</html>

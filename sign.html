@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="css/ZUI.min.css">
+    <link rel="stylesheet" href="plugins/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+    <title>移动护理后台 | 控制项</title>
+    <!-- [if lt IE 9]
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    [endif] -->
+</head>
+<body ng-app="ydhlApp" class="hold-transition skin-blue sidebar-mini" onload="">
+<div class="wrapper">
+    <header ng-include="'common/header.html'"></header>
+    <aside ng-include="'common/aside.html'"></aside>
+    <div class="content-wrapper" ng-controller="signController">
+        <section class="content-header">
+            <h1>移动护理管理后台
+                <small>控制面板</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="javascript:;"><i class="fa fa-dashboard"></i>控制面板</a></li>
+                <li class="active">体征配置信息</li>
+            </ol>
+        </section>
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">体征配置信息</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-responsive" id="sign-table">
+                                        <tr>
+                                            <th>体征配置项ID</th>
+                                            <th>标准标识符</th>
+                                            <th>数据元名称</th>
+                                            <th>单位</th>
+                                            <th>值域范围</th>
+                                            <th>语音输入识别码</th>
+                                            <th>排序号</th>
+                                        </tr>
+                                        <tr ng-repeat="one in signs">
+                                            <td>{{one.signId}}</td>
+                                            <td>{{one.code}}</td>
+                                            <td>{{one.name}}</td>
+                                            <td>{{one.unit}}</td>
+                                            <td>{{one.range}}</td>
+                                            <td>{{one.voiceCode}}</td>
+                                            <td>{{one.rank}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">添加体征配置项</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-responsive">
+                                        <tr>
+                                            <td><input type="text" class="form-control" ng-model="newSign.code" name="code" placeholder="标准标识符"></td>
+                                            <td><input type="text" class="form-control" ng-model="newSign.name" name="name" placeholder="数据元名称"></td>
+                                            <td><input type="text" class="form-control" ng-model="newSign.unit" name="unit" placeholder="单位"></td>
+                                            <td><input type="text" class="form-control" ng-model="newSign.range" name="range" placeholder="值域范围"></td>
+                                            <td><input type="text" class="form-control" ng-model="newSign.voiceCode" name="voiceCode" placeholder="语音输入识别码"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-primary" ng-click="addSign()">添加体征配置项</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">更新体征配置项信息</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form action="" method="post" id="form-sign-update">
+                                        <div class="form-group">
+                                            <select class="form-control" ng-model="toUpdateId" ng-change="selectSignToUpdate()">
+                                                <option ng-repeat="one in signs" value="{{one.signId}}">{{one.signId}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" type="text" ng-model="toUpdateSign.code" placeholder="请输入体征标识符">
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" type="text" ng-model="toUpdateSign.name" placeholder="请输入体征项名称">
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" type="text" ng-model="toUpdateSign.range" placeholder="请输入值域范围">
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" type="text" ng-model="toUpdateSign.rank" placeholder="请输入排序号">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-primary" ng-click="updateSign()">更新体征配置项信息</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">删除体征配置项</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form action="" method="post" id="form-sign-delete">
+                                        <div class="form-group">
+                                            <select name="signId" ng-model="toDeleteId" id="delete-sign-select" class="form-control" title="">
+                                                <option ng-repeat="one in signs">{{one.signId}}</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-danger" ng-click="deleteSign()">删除体征配置项</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">病区体征项配置</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body form-horizontal">
+                            <div class="form-group">
+                                <div class="col-md-1">
+                                    <label class="control-label">病区</label>
+                                </div>
+                                <div class="col-md-5">
+                                    <select name="signId" ng-model="selectedAreaId" class="form-control" >
+                                        <option ng-repeat="one in areas" value="{{one.areaId}}">{{one.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <table class="table table-responsive" id="sign-table">
+                                        <tr>
+                                            <th>体征配置项ID</th>
+                                            <th>标准标识符</th>
+                                            <th>数据元名称</th>
+                                            <th>单位</th>
+                                            <th>值域范围</th>
+                                            <th>语音输入识别码</th>
+                                            <th>排序号</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        <tr ng-repeat="one in selectedSigns">
+                                            <td>{{one.signId}}</td>
+                                            <td>{{one.code}}</td>
+                                            <td>{{one.name}}</td>
+                                            <td>{{one.unit}}</td>
+                                            <td>{{one.range}}</td>
+                                            <td>{{one.voiceCode}}</td>
+                                            <td>{{one.rank}}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-box-tool" ng-click="revoke(one.signId, $index)">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-if="selectedAreaId != null">
+                                <div class="col-md-3">
+                                    <select name="signId" ng-model="toAssign.signId" class="form-control" title="">
+                                        <option ng-repeat="one in signs" value="{{one.signId}}">{{one.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" ng-model="toAssign.rank" placeholder="排序号">
+                                </div>
+                                <div class="col-md-1">
+                                    <button class="btn btn-primary" ng-click="assign()">添加</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<script src="js/lib/jQuery-2.1.4.min.js"></script>
+<script src="js/lib/angular.min.js"></script>
+<script src="js/lib/AdminLTE.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/controller/sign.js"></script>
+</body>
+</html>

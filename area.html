@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="css/ZUI.min.css">
+    <link rel="stylesheet" href="plugins/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+    <title>移动护理后台 | 病区信息管理</title>
+    <!-- [if lt IE 9]
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    [endif] -->
+</head>
+<body ng-app="ydhlApp" class="hold-transition skin-blue sidebar-mini" onload="">
+<div class="wrapper">
+    <header ng-include="'common/header.html'"></header>
+    <aside ng-include="'common/aside.html'"></aside>
+    <div class="content-wrapper" ng-controller="areaController">
+        <section class="content-header">
+            <h1>移动护理管理后台
+                <small>控制面板</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="javascript:;"><i class="fa fa-dashboard"></i>控制面板</a></li>
+                <li class="active">首页</li>
+            </ol>
+        </section>
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">病区列表</h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-responsive" id="area-table">
+                                        <tr>
+                                            <th>病区ID</th>
+                                            <th>移动护理病区名称</th>
+                                            <th>移动护理病区启用标识</th>
+                                            <th>电子病历版本</th>
+                                            <th>腕带类型</th>
+                                        </tr>
+                                        <tr ng-repeat="one in areas">
+                                            <td>{{one.areaId}}</td>
+                                            <td>{{one.name}}</td>
+                                            <td>{{one.enabled}}</td>
+                                            <td>{{one.digitalCaseVersion}}</td>
+                                            <td>{{one.wdType}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">添加病区信息</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-responsive">
+                                        <tr>
+                                            <td><input type="text" class="form-control" ng-model="newArea.areaId" id="addAreaId" name="offical_id" placeholder="需要检索的4位病区号（纯数字）,如:123"></td>
+                                            <td><input type="text" class="form-control" ng-model="newArea.name" name="name" placeholder="移动护理病区名称,如:骨科一区"></td>
+                                            <td><input type="text" class="form-control" ng-model="newArea.enabled" name="enabled" placeholder="移动护理病区启用标识,如:true"></td>
+                                            <td><input type="text" class="form-control" ng-model="newArea.digitalCaseVersion" name="digital_case_version" placeholder="电子病历版本,如:4.1"></td>
+                                            <td><input type="text" class="form-control" ng-model="newArea.wdType" name="wd_type" placeholder="腕带类型,如:0"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-primary" ng-click="addArea()">添加病区信息
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">更新病区信息</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form action="" method="post" id="form-area-update">
+                                        <table class="table table-responsive">
+                                            <tr>
+                                                <td>
+                                                    <select name="area" class="form-control" ng-model="toUpdateId" ng-change="selectAreaToUpdate()" id="update-area-select" title="">
+                                                        <option ng-repeat="one in areas">{{one.areaId}}</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="text" class="form-control" ng-model="toUpdateArea.name" name="name" placeholder="移动护理病区名称,如:骨科一区"></td>
+                                                <td><input type="text" class="form-control" ng-model="toUpdateArea.enabled" name="enabled" placeholder="移动护理病区启用标识,如:true"></td>
+                                                <td><input type="text" class="form-control" ng-model="toUpdateArea.digitalCaseVersion" name="digital_case_version" placeholder="电子病历版本,如:4.1"></td>
+                                                <td><input type="text" class="form-control" ng-model="toUpdateArea.wdType" name="wd_type" placeholder="腕带类型,如:0"></td>
+                                            </tr>
+                                        </table>
+                                    </form>
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-primary" ng-click="updateArea()">更新病区信息</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">删除病区信息</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form action="" method="post" id="form_area_delete">
+                                        <div class="form-group">
+                                            <select name="area" class="form-control" ng-model="toDeleteId" id="update-area-select" title="">
+                                                <option ng-repeat="one in areas">{{one.areaId}}</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-danger" ng-click="deleteArea()">删除病区信息</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<script src="js/lib/jQuery-2.1.4.min.js"></script>
+<script src="js/lib/angular.min.js"></script>
+<script src="js/lib/AdminLTE.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/controller/area.js"></script>
+</body>
+</html>
