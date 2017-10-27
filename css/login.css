@@ -1,176 +1,31 @@
 @charset "UTF-8";
-@font-face {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-body {
-    height: 100%;
-}
-
-ul li {
-    list-style: none;
-}
-
-li {
-    padding: 8px 0;
-    text-overflow: ellipsis;
-}
-
-.container{
-	width: 100% !important;
-	padding: 0;
-}
-
-.bg {
-    width: 100%;
-    min-width: 100%;
-    height: auto;
-    min-height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: #33a3f4;
-}
-
-.navbar-inverse {
-    border-color: #0591e6;
-    border-radius: 0;
-    background-color: #0591e6;
-    height: 150px;
-    margin-bottom: 0;
-}
-.navbar-header{
-    width:100%;
-}
-.navbar-header img {
-    height: 120px;
-    margin-top: 10px;
-    margin-left: 20px;
-}
-.navbar-header .login_img {
-    height:169px;
-    width:100%;
-    background: url(../images/login_img.jpg);
-    background-size: cover;
-}
-
-.hospital_img {
-    height: 300px;
-}
-
-.bg-header {
-    font-size: 28px;
-    color: #fff;
-}
-
-.container-wrapper {
-    position: relative;
-    background: #eceff4;
-}
-
-.row{
-	margin-right: 8% !important;
-}
-
-.col-md-8 {
-    width: 100% !important;
-}
-
-.login-div {
-    position: absolute;
-    top: -10px;
-    right: 0;
-    padding-top: 20px;
-    max-width: 320px;
-    height: 320px;
-    background-color: #fff;
-    box-shadow: 0 -1px 25px;
-}
-
-.content-head, .form-head {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.news a, .notice a, .more {
-    color: #333;
-}
-
-.news a:hover, .notice a:hover, .more:hover {
-    text-decoration: none;
-    color: #337ab7;
-}
-
-.msg-alert {
-    height: 27px;
-    padding-top: 10px;
-    font-size: 12px;
-    text-align: center;
-    color: #ff4c4c;
-}
-
-.login-btn {
-    background-color: #0591e6;
-    border-color: #0591e6;
-}
-
-.login-auto {
-    float: left;
-    width: 50%;
-}
-
-.remember-pass {
-    float: left;
-    width: 50%;
-    text-align: right;
-}
-
-.qr-code {
-    display: inline-block;
-    width: auto;
-    text-align: center;
-    margin-left: 130px;
-}
-
-.qr-code img {
-    width: 120px;
-    height: 120px;
-}
-
-.qr-code span {
-    display: block;
-    font-size: 12px;
-    color: #fff;
-}
-
-.download {
-    display: inline-block;
-    position: relative;
-    margin-left: 35px;
-    width: 150px;
-    vertical-align: top;
-}
-
-.download span {
-    color: #fff;
-}
-
-.ios-app {
-    border-radius: 5px;
-    padding: 5px 10px;
-    line-height: 30px;
-    text-align: center;
-    background: #f7c15a;
-    cursor: pointer;
-}
-
-.android-app {
-    margin-top: 30px;
-    border-radius: 5px;
-    padding: 5px 10px;
-    line-height: 30px;
-    text-align: center;
-    background: #1ccf64;
-    cursor: pointer;
-}
-
+@font-face{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+body{height:100%}
+ul li{list-style:none}
+li{padding:8px 0;text-overflow:ellipsis}
+.container{width:100%!important;padding:0}
+.bg{position:fixed;top:0;left:0;width:100%;min-width:100%;height:auto;min-height:100%;background:#33a3f4}
+.navbar-inverse{margin-bottom:0;border-color:#0591e6;border-radius:0;height:150px;background-color:#0591e6}
+.navbar-header{width:100%}
+.navbar-header img{height:120px;margin-top:10px;margin-left:20px}
+.navbar-header .login_img{height:169px;width:100%;background:url(../images/login_img.jpg);background-size:cover}
+.hospital_img{height:300px}
+.bg-header{font-size:28px;color:#fff}
+.container-wrapper{position:relative;background:#eceff4}
+.row{margin-right:8%!important}
+.col-md-8{width:100%!important}
+.login-div{position:absolute;top:-10px;right:0;padding-top:20px;max-width:320px;height:320px;background-color:#fff;box-shadow:0 -1px 25px}
+.content-head,.form-head{font-size:18px;font-weight:700}
+.news a,.notice a,.more{color:#333}
+.news a:hover,.notice a:hover,.more:hover{text-decoration:none;color:#337ab7}
+.msg-alert{height:27px;padding-top:10px;font-size:12px;text-align:center;color:#ff4c4c}
+.login-btn{border-color:#0591e6;background-color:#0591e6}
+.login-auto{float:left;width:50%}
+.remember-pass{float:left;width:50%;text-align:right}
+.qr-code{display:inline-block;margin-left:130px;text-align:center;width:auto}
+.qr-code img{width:120px;height:120px}
+.qr-code span{display:block;font-size:12px;color:#fff}
+.download{display:inline-block;position:relative;margin-left:35px;width:150px;vertical-align:top}
+.download span{color:#fff}
+.ios-app{border-radius:5px;padding:5px 10px;text-align:center;line-height:30px;background:#f7c15a;cursor:pointer}
+.android-app{margin-top:30px;border-radius:5px;padding:5px 10px;line-height:30px;text-align:center;background:#1ccf64;cursor:pointer}

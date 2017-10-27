@@ -1,14 +1,13 @@
-app.controller('areaController', ['$scope', '$http', 'AreaList', function($scope, $http, AreaList){
+app.controller('areaController', ['$scope', '$http', 'AreaList', function ($scope, $http, AreaList) {
     init();
-
     var reg = new RegExp("^[0-9]*$");
-    $scope.addArea = function() {
-        if(!reg.test($scope.newArea.areaId)){
+    $scope.addArea = function () {
+        if (!reg.test($scope.newArea.areaId)) {
             alert("请输入数字!");
             $('#addAreaId').focus();
             return;
         }
-        if($scope.newArea.areaId.length>4){
+        if ($scope.newArea.areaId.length > 4) {
             alert("请输入少于4位数字的编号!");
             $('#addAreaId').focus();
             return;
@@ -17,7 +16,7 @@ app.controller('areaController', ['$scope', '$http', 'AreaList', function($scope
             url: APIurl + '/area/add',
             method: 'POST',
             data: $scope.newArea
-        }).success(function(res) {
+        }).success(function (res) {
             if (res.code !== 200) {
                 alert(res.message);
                 return;
@@ -25,39 +24,36 @@ app.controller('areaController', ['$scope', '$http', 'AreaList', function($scope
             $scope.areas.push($.extend({}, $scope.newArea));
         });
     };
-
-    $scope.updateArea = function() {
+    $scope.updateArea = function () {
         $http({
             url: APIurl + '/area/update',
             method: 'POST',
             data: $scope.toUpdateArea
-        }).success(function(res) {
+        }).success(function (res) {
             if (res.code !== 200) {
                 alert(res.message);
-                return;
             }
         });
     };
 
-    $scope.deleteArea = function() {
+    $scope.deleteArea = function () {
         $http({
             url: APIurl + '/area/delete',
             method: 'POST',
             data: {
                 'areaId': $scope.toDeleteId
             }
-        }).success(function(res) {
+        }).success(function (res) {
             if (res.code !== 200) {
                 alert(res.message);
-                return;
             }
         });
     };
 
-    $scope.selectAreaToUpdate = function() {
+    $scope.selectAreaToUpdate = function () {
         for (var idx in $scope.areas) {
             var area = $scope.areas[idx];
-            if (area.areaId == $scope.toUpdateId) {
+            if (area.areaId === $scope.toUpdateId) {
                 $scope.toUpdateArea = area;
                 return;
             }
@@ -71,10 +67,9 @@ app.controller('areaController', ['$scope', '$http', 'AreaList', function($scope
         $scope.toUpdateId = null;
         $scope.toUpdateArea = null;
         $scope.toDeleteId = null;
-
-        AreaList.query(function(res) {
-            if(res.code== -200){
-                location.href= APIurl + '/login.html';
+        AreaList.query(function (res) {
+            if (res.code === -200) {
+                location.href = APIurl + '/login.html';
                 return;
             }
             if (res.code !== 200) {

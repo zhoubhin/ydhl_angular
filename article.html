@@ -33,7 +33,6 @@
                     <div class="box">
                         <div class="box-header with-border">
                             <h3 class="box-title">健康宣教文章列表</h3>
-
                             <div class="box-tools pull-right">
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse">
                                     <i class="fa fa-minus"></i>
@@ -64,7 +63,6 @@
                     <div class="box">
                         <div class="box-header with-border">
                             <h3 class="box-title">添加健康宣教文章</h3>
-
                             <div class="box-tools pull-right">
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse">
                                     <i class="fa fa-minus"></i>
@@ -76,13 +74,8 @@
                                 <div class="col-md-12">
                                     <table class="table table-responsive">
                                         <tr>
-                                            <td>
-                                                <input class="form-control" ng-model="newArticle.title" type="text" name="title" placeholder="标题">
-                                            </td>
-                                            <td>
-                                                <textarea name="content" ng-model="newArticle.content" class="form-control" cols="30" rows="10" placeholder="正文">
-                                                </textarea>
-                                            </td>
+                                            <td><input class="form-control" ng-model="newArticle.title" type="text" name="title" placeholder="标题"></td>
+                                            <td><textarea name="content" ng-model="newArticle.content" class="form-control" cols="30" rows="10" placeholder="正文"></textarea></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -111,7 +104,7 @@
                                     <table class="table table-responsive">
                                         <tr>
                                             <td>
-                                                <select class="form-control" ng-model="toUpdateId" ng-change="selectArticleToUpdate()" id="update-article-id" name="articleId" title="">
+                                                <select class="form-control" id="update-article-id" name="articleId" ng-model="toUpdateId" ng-change="selectArticleToUpdate()" title="">
                                                     <option ng-repeat="one in articles">{{one.articleId}}</option>
                                                 </select>
                                             </td>
@@ -144,7 +137,7 @@
                                 <div class="col-md-12">
                                     <form action="" method="post" id="form-jkxj-delete">
                                         <div class="form-group">
-                                            <select class="form-control" ng-model="toDeleteId">
+                                            <select class="form-control" ng-model="toDeleteId" title="">
                                                 <option ng-repeat="one in articles">{{one.articleId}}</option>
                                             </select>
                                         </div>
@@ -175,7 +168,7 @@
                                     <label class="control-label">病区</label>
                                 </div>
                                 <div class="col-md-5">
-                                    <select name="signId" ng-model="selectedAreaId" class="form-control" >
+                                    <select class="form-control" name="signId" ng-model="selectedAreaId" title="">
                                         <option ng-repeat="one in areas" value="{{one.areaId}}">{{one.name}}</option>
                                     </select>
                                 </div>
@@ -202,7 +195,6 @@
                                     </table>
                                 </div>
                             </div>
-
                             <div class="form-group" ng-if="selectedAreaId != null">
                                 <div class="col-md-3">
                                     <select name="signId" ng-model="toAssign.articleId" class="form-control" title="">

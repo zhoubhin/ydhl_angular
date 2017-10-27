@@ -33,8 +33,8 @@
                     <div class="box">
                         <div class="box-header with-border">
                             <h3 class="box-title">芯片信息</h3>
-                            <input type="text" ng-model="searchVal.rfidSn"/>
-                            <select ng-model="searchVal.areaId">
+                            <input type="text" ng-model="searchVal.rfidSn" title="">
+                            <select ng-model="searchVal.areaId" title="">
                                 <option value="">全部</option>
                                 <option ng-repeat="one in areas" value="{{one.areaId}}">{{one.name}}</option>
                             </select>
@@ -68,12 +68,12 @@
                             </div>
                         </div>
                         <div style="text-align: right;" class="pagination" id="pageDiv">
-                            到第<input type="text" ng-model="searchVal.pageNo" style=" width:60px;height:20px;border:#3E9ACD 1px solid;" size="5" >页
+                            到第<input type="text" ng-model="searchVal.pageNo" style=" width:60px;height:20px;border:#3e9acd 1px solid;" size="5" title="">页
                             <a href="javascript:void(0);" ng-click="toRfid()">跳转</a>
                             <a ng-click="preRfid()" href="javascript:void(0);">上一页&nbsp;&nbsp;</a>
                             <a ng-click="afterRfid()" href="javascript:void(0);">下一页&nbsp;&nbsp;</a>
-                            <em>{{pagination.total_count}}</em> 条记录
-                            <em>{{pagination.page_no}}</em>/<em >{{pagination.total_pages}}</em> 页
+                            <em>{{pagination.total_count}}</em>&nbsp;条记录
+                            <em>{{pagination.page_no}}</em>/<em>{{pagination.total_pages}}</em>&nbsp;页
                         </div>
                     </div>
                 </div>

@@ -1,14 +1,14 @@
-app.controller('pdaController', ['$scope', '$http', 'AreaList', function($scope, $http, AreaList){
+app.controller('pdaController', ['$scope', '$http', 'AreaList', function ($scope, $http, AreaList) {
     init();
 
-    $scope.del = function(pdaId, idx) {
+    $scope.del = function (pdaId, idx) {
         $http({
             url: APIurl + '/pda/delete',
             method: 'POST',
             data: {
                 'pdaId': pdaId
             }
-        }).success(function(res) {
+        }).success(function (res) {
             if (res.code !== 200) {
                 alert(res.message);
                 return;
@@ -17,7 +17,7 @@ app.controller('pdaController', ['$scope', '$http', 'AreaList', function($scope,
         });
     };
 
-    $scope.add = function() {
+    $scope.add = function () {
         $http({
             url: APIurl + '/pda/add',
             method: 'POST',
@@ -25,20 +25,19 @@ app.controller('pdaController', ['$scope', '$http', 'AreaList', function($scope,
                 'areaId': $scope.selectedAreaId,
                 'pdaId': $scope.toAssign.pdaId
             }
-        }).success(function(res) {
+        }).success(function (res) {
             if (res.code !== 200) {
                 alert(res.message);
-                return;
             }
         });
     };
 
-    $scope.$watch('selectedAreaId', function(newValue, oldValue) {
+    $scope.$watch('selectedAreaId', function (newValue, oldValue) {
         if (newValue) {
             $http({
                 url: APIurl + '/area/pda?areaId=' + newValue,
                 method: 'GET'
-            }).success(function(res) {
+            }).success(function (res) {
                 if (res.code !== 200) {
                     alert(res.message);
                     return;
@@ -54,12 +53,12 @@ app.controller('pdaController', ['$scope', '$http', 'AreaList', function($scope,
         $scope.selectedAreaId = null;
         $scope.selectedPdas = null;
         $scope.toAssign = {
-            'pdaId': null,
+            'pdaId': null
         };
 
-        AreaList.query(function(res) {
-            if(res.code== -200){
-                location.href= APIurl + '/login.html';
+        AreaList.query(function (res) {
+            if (res.code === -200) {
+                location.href = APIurl + '/login.html';
                 return;
             }
             if (res.code !== 200) {

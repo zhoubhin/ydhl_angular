@@ -1,12 +1,12 @@
-app.controller('signController', ['$scope', '$http', 'SignList', 'AreaList', function($scope, $http, SignList, AreaList){
+app.controller('signController', ['$scope', '$http', 'SignList', 'AreaList', function ($scope, $http, SignList, AreaList) {
     init();
 
-    $scope.addSign = function() {
+    $scope.addSign = function () {
         $http({
             url: APIurl + '/sign/add',
             method: 'POST',
             data: $scope.newSign
-        }).success(function(res) {
+        }).success(function (res) {
             if (res.code !== 200) {
                 alert(res.message);
                 return;
@@ -15,10 +15,10 @@ app.controller('signController', ['$scope', '$http', 'SignList', 'AreaList', fun
         });
     };
 
-    $scope.selectSignToUpdate = function() {
+    $scope.selectSignToUpdate = function () {
         for (var idx in $scope.signs) {
             var sign = $scope.signs[idx];
-            if (sign.signId == $scope.toUpdateId) {
+            if (sign.signId === $scope.toUpdateId) {
                 $scope.toUpdateSign = sign;
                 return;
             }
@@ -26,35 +26,33 @@ app.controller('signController', ['$scope', '$http', 'SignList', 'AreaList', fun
         $scope.toUpdateSign = null;
     };
 
-    $scope.updateSign = function() {
+    $scope.updateSign = function () {
         $http({
             url: APIurl + '/sign/update',
             method: 'POST',
             data: $scope.toUpdateSign
-        }).success(function(res) {
+        }).success(function (res) {
             if (res.code !== 200) {
                 alert(res.message);
-                return;
             }
         });
     };
 
-    $scope.deleteSign = function() {
+    $scope.deleteSign = function () {
         $http({
             url: APIurl + '/sign/delete',
             method: 'POST',
             data: {
                 'signId': $scope.toDeleteId
             }
-        }).success(function(res) {
+        }).success(function (res) {
             if (res.code !== 200) {
                 alert(res.message);
-                return;
             }
         });
     };
 
-    $scope.assign = function() {
+    $scope.assign = function () {
         $http({
             url: APIurl + '/sign/assign',
             method: 'POST',
@@ -63,15 +61,14 @@ app.controller('signController', ['$scope', '$http', 'SignList', 'AreaList', fun
                 'signId': $scope.toAssign.signId,
                 'rank': $scope.toAssign.rank
             }
-        }).success(function(res) {
+        }).success(function (res) {
             if (res.code !== 200) {
                 alert(res.message);
-                return;
             }
         });
     };
 
-    $scope.revoke = function(signId, idx) {
+    $scope.revoke = function (signId, idx) {
         $http({
             url: APIurl + '/sign/revoke',
             method: 'POST',
@@ -79,7 +76,7 @@ app.controller('signController', ['$scope', '$http', 'SignList', 'AreaList', fun
                 'areaId': $scope.selectedAreaId,
                 'signId': signId
             }
-        }).success(function(res) {
+        }).success(function (res) {
             if (res.code !== 200) {
                 alert(res.message);
                 return;
@@ -88,12 +85,12 @@ app.controller('signController', ['$scope', '$http', 'SignList', 'AreaList', fun
         });
     };
 
-    $scope.$watch('selectedAreaId', function(newValue, oldValue) {
+    $scope.$watch('selectedAreaId', function (newValue, oldValue) {
         if (newValue) {
             $http({
                 url: APIurl + '/sign/list?areaId=' + newValue,
                 method: 'GET'
-            }).success(function(res) {
+            }).success(function (res) {
                 if (res.code !== 200) {
                     alert(res.message);
                     return;
@@ -110,7 +107,7 @@ app.controller('signController', ['$scope', '$http', 'SignList', 'AreaList', fun
             });
         }
     });
-    
+
     function init() {
         $scope.signs = null;
         $scope.areas = null;
@@ -129,9 +126,9 @@ app.controller('signController', ['$scope', '$http', 'SignList', 'AreaList', fun
             'rank': null
         };
 
-        SignList.query(function(res) {
-            if(res.code== -200){
-                location.href= APIurl + '/login.html';
+        SignList.query(function (res) {
+            if (res.code === -200) {
+                location.href = APIurl + '/login.html';
                 return;
             }
             if (res.code !== 200) {
@@ -146,13 +143,13 @@ app.controller('signController', ['$scope', '$http', 'SignList', 'AreaList', fun
                 value['voiceCode'] = value['voice_code'];
                 delete value['voice_code'];
             }
-            data.sort(function(a, b) {
+            data.sort(function (a, b) {
                 return a.signId - b.signId;
             });
             $scope.signs = data;
         });
 
-        AreaList.query(function(res) {
+        AreaList.query(function (res) {
             if (res.code !== 200) {
                 alert(res.message);
                 return;

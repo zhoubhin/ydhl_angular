@@ -23,7 +23,7 @@
                 <small>控制面板</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="javascript:;"><i class="fa fa-dashboard"></i>控制面板</a></li>
+                <li><a href="javascript:void(0);"><i class="fa fa-dashboard"></i>控制面板</a></li>
                 <li class="active">体征配置信息</li>
             </ol>
         </section>
@@ -116,7 +116,7 @@
                                 <div class="col-md-12">
                                     <form action="" method="post" id="form-sign-update">
                                         <div class="form-group">
-                                            <select class="form-control" ng-model="toUpdateId" ng-change="selectSignToUpdate()">
+                                            <select class="form-control" ng-model="toUpdateId" ng-change="selectSignToUpdate()" title="">
                                                 <option ng-repeat="one in signs" value="{{one.signId}}">{{one.signId}}</option>
                                             </select>
                                         </div>
@@ -158,7 +158,7 @@
                                 <div class="col-md-12">
                                     <form action="" method="post" id="form-sign-delete">
                                         <div class="form-group">
-                                            <select name="signId" ng-model="toDeleteId" id="delete-sign-select" class="form-control" title="">
+                                            <select class="form-control" id="delete-sign-select" name="signId" ng-model="toDeleteId" title="">
                                                 <option ng-repeat="one in signs">{{one.signId}}</option>
                                             </select>
                                         </div>
@@ -189,7 +189,7 @@
                                     <label class="control-label">病区</label>
                                 </div>
                                 <div class="col-md-5">
-                                    <select name="signId" ng-model="selectedAreaId" class="form-control" >
+                                    <select class="form-control" name="signId" ng-model="selectedAreaId" title="">
                                         <option ng-repeat="one in areas" value="{{one.areaId}}">{{one.name}}</option>
                                     </select>
                                 </div>
@@ -224,7 +224,6 @@
                                     </table>
                                 </div>
                             </div>
-
                             <div class="form-group" ng-if="selectedAreaId != null">
                                 <div class="col-md-3">
                                     <select name="signId" ng-model="toAssign.signId" class="form-control" title="">

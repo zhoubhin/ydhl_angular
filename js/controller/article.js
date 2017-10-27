@@ -1,11 +1,11 @@
-app.controller('articleController', ['$scope', '$http', 'ArticleList', 'AreaList', function($scope, $http, ArticleList, AreaList){
+app.controller('articleController', ['$scope', '$http', 'ArticleList', 'AreaList', function ($scope, $http, ArticleList, AreaList) {
     init();
 
-    $scope.selectArticleToUpdate = function() {
+    $scope.selectArticleToUpdate = function () {
         $http({
             url: APIurl + "/article?articleId=" + $scope.toUpdateId,
             method: 'GET'
-        }).success(function(res) {
+        }).success(function (res) {
             if (res.code !== 200) {
                 alert(res.message);
                 return;
@@ -14,7 +14,7 @@ app.controller('articleController', ['$scope', '$http', 'ArticleList', 'AreaList
         });
     };
 
-    $scope.updateArticle = function() {
+    $scope.updateArticle = function () {
         $http({
             url: APIurl + "/article/update",
             method: 'POST',
@@ -23,20 +23,19 @@ app.controller('articleController', ['$scope', '$http', 'ArticleList', 'AreaList
                 'title': $scope.toUpdateArticle.title,
                 'content': $scope.toUpdateArticle.content
             }
-        }).success(function(res) {
+        }).success(function (res) {
             if (res.code !== 200) {
                 alert(res.message);
-                return;
             }
         });
     };
 
-    $scope.addArticle = function() {
+    $scope.addArticle = function () {
         $http({
             url: APIurl + "/article/add",
             method: 'POST',
             data: $scope.newArticle
-        }).success(function(res) {
+        }).success(function (res) {
             if (res.code !== 200) {
                 alert(res.message);
                 return;
@@ -45,22 +44,21 @@ app.controller('articleController', ['$scope', '$http', 'ArticleList', 'AreaList
         });
     };
 
-    $scope.deleteArticle = function() {
+    $scope.deleteArticle = function () {
         $http({
             url: APIurl + "/article/delete",
             method: 'POST',
             data: {
                 'articleId': $scope.toDeleteId
             }
-        }).success(function(res) {
+        }).success(function (res) {
             if (res.code !== 200) {
                 alert(res.message);
-                return;
             }
         });
     };
 
-    $scope.assign = function() {
+    $scope.assign = function () {
         $http({
             url: APIurl + '/article/assign',
             method: 'POST',
@@ -69,15 +67,14 @@ app.controller('articleController', ['$scope', '$http', 'ArticleList', 'AreaList
                 'articleId': $scope.toAssign.articleId,
                 'rank': $scope.toAssign.rank
             }
-        }).success(function(res) {
+        }).success(function (res) {
             if (res.code !== 200) {
                 alert(res.message);
-                return;
             }
         });
     };
 
-    $scope.revoke = function(articleId, idx) {
+    $scope.revoke = function (articleId, idx) {
         $http({
             url: APIurl + '/article/revoke',
             method: 'POST',
@@ -85,7 +82,7 @@ app.controller('articleController', ['$scope', '$http', 'ArticleList', 'AreaList
                 'areaId': $scope.selectedAreaId,
                 'articleId': articleId
             }
-        }).success(function(res) {
+        }).success(function (res) {
             if (res.code !== 200) {
                 alert(res.message);
                 return;
@@ -94,12 +91,12 @@ app.controller('articleController', ['$scope', '$http', 'ArticleList', 'AreaList
         });
     };
 
-    $scope.$watch('selectedAreaId', function(newValue, oldValue) {
+    $scope.$watch('selectedAreaId', function (newValue, oldValue) {
         if (newValue) {
             $http({
                 url: APIurl + '/article/titles?areaId=' + newValue,
                 method: 'GET'
-            }).success(function(res) {
+            }).success(function (res) {
                 if (res.code !== 200) {
                     alert(res.message);
                     return;
@@ -130,9 +127,9 @@ app.controller('articleController', ['$scope', '$http', 'ArticleList', 'AreaList
             'rank': null
         };
 
-        ArticleList.query(function(res) {
-            if(res.code== -200){
-                location.href= APIurl + '/login.html';
+        ArticleList.query(function (res) {
+            if (res.code === -200) {
+                location.href = APIurl + '/login.html';
                 return;
             }
             if (res.code !== 200) {
@@ -145,13 +142,13 @@ app.controller('articleController', ['$scope', '$http', 'ArticleList', 'AreaList
                 value['articleId'] = value['article_id'];
                 delete value['article_id'];
             }
-            data.sort(function(a, b) {
+            data.sort(function (a, b) {
                 return a.articleId - b.articleId;
             });
             $scope.articles = data;
         });
 
-        AreaList.query(function(res) {
+        AreaList.query(function (res) {
             if (res.code !== 200) {
                 alert(res.message);
                 return;
