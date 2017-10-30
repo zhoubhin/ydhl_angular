@@ -1,6 +1,5 @@
 app.controller('signController', ['$scope', '$http', 'SignList', 'AreaList', function ($scope, $http, SignList, AreaList) {
     init();
-
     $scope.addSign = function () {
         $http({
             url: APIurl + '/sign/add',
@@ -14,7 +13,6 @@ app.controller('signController', ['$scope', '$http', 'SignList', 'AreaList', fun
             $scope.signs.push($.extend({}, $scope.newSign));
         });
     };
-
     $scope.selectSignToUpdate = function () {
         for (var idx in $scope.signs) {
             var sign = $scope.signs[idx];
@@ -25,7 +23,6 @@ app.controller('signController', ['$scope', '$http', 'SignList', 'AreaList', fun
         }
         $scope.toUpdateSign = null;
     };
-
     $scope.updateSign = function () {
         $http({
             url: APIurl + '/sign/update',
@@ -37,7 +34,6 @@ app.controller('signController', ['$scope', '$http', 'SignList', 'AreaList', fun
             }
         });
     };
-
     $scope.deleteSign = function () {
         $http({
             url: APIurl + '/sign/delete',
@@ -51,7 +47,6 @@ app.controller('signController', ['$scope', '$http', 'SignList', 'AreaList', fun
             }
         });
     };
-
     $scope.assign = function () {
         $http({
             url: APIurl + '/sign/assign',
@@ -67,7 +62,6 @@ app.controller('signController', ['$scope', '$http', 'SignList', 'AreaList', fun
             }
         });
     };
-
     $scope.revoke = function (signId, idx) {
         $http({
             url: APIurl + '/sign/revoke',
@@ -84,7 +78,6 @@ app.controller('signController', ['$scope', '$http', 'SignList', 'AreaList', fun
             $scope.selectedSigns.splice(idx, 1);
         });
     };
-
     $scope.$watch('selectedAreaId', function (newValue, oldValue) {
         if (newValue) {
             $http({

@@ -35,7 +35,6 @@ app.controller('areaController', ['$scope', '$http', 'AreaList', function ($scop
             }
         });
     };
-
     $scope.deleteArea = function () {
         $http({
             url: APIurl + '/area/delete',
@@ -49,7 +48,6 @@ app.controller('areaController', ['$scope', '$http', 'AreaList', function ($scop
             }
         });
     };
-
     $scope.selectAreaToUpdate = function () {
         for (var idx in $scope.areas) {
             var area = $scope.areas[idx];

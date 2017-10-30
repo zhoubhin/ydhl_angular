@@ -1,6 +1,5 @@
 app.controller('rfidController', ['$scope', '$http', 'RfidList', function ($scope, $http, RfidList) {
     init();
-
     $scope.updateRfid = function () {
         $http({
             url: APIurl + '/rfid/updateRfid',
@@ -15,7 +14,6 @@ app.controller('rfidController', ['$scope', '$http', 'RfidList', function ($scop
             }
         });
     };
-
     $scope.deleteRfid = function () {
         $http({
             url: APIurl + '/rfid/deleteRfid',
@@ -32,7 +30,6 @@ app.controller('rfidController', ['$scope', '$http', 'RfidList', function ($scop
             }
         });
     };
-
     $scope.selectRfidToUpdate = function () {
         for (var idx in $scope.rfids) {
             var rfid = $scope.rfids[idx];
@@ -43,7 +40,6 @@ app.controller('rfidController', ['$scope', '$http', 'RfidList', function ($scop
         }
         $scope.toUpdateRfid = null;
     };
-
     $scope.queryList = function () {
         $scope.searchVal.pageNo = 1;
         $scope.queryRfid();

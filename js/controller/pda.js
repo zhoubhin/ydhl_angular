@@ -1,6 +1,5 @@
 app.controller('pdaController', ['$scope', '$http', 'AreaList', function ($scope, $http, AreaList) {
     init();
-
     $scope.del = function (pdaId, idx) {
         $http({
             url: APIurl + '/pda/delete',
@@ -16,7 +15,6 @@ app.controller('pdaController', ['$scope', '$http', 'AreaList', function ($scope
             $scope.selectedPdas.splice(idx, 1);
         });
     };
-
     $scope.add = function () {
         $http({
             url: APIurl + '/pda/add',
@@ -31,7 +29,6 @@ app.controller('pdaController', ['$scope', '$http', 'AreaList', function ($scope
             }
         });
     };
-
     $scope.$watch('selectedAreaId', function (newValue, oldValue) {
         if (newValue) {
             $http({

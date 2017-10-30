@@ -1,6 +1,5 @@
 app.controller('articleController', ['$scope', '$http', 'ArticleList', 'AreaList', function ($scope, $http, ArticleList, AreaList) {
     init();
-
     $scope.selectArticleToUpdate = function () {
         $http({
             url: APIurl + "/article?articleId=" + $scope.toUpdateId,
@@ -13,7 +12,6 @@ app.controller('articleController', ['$scope', '$http', 'ArticleList', 'AreaList
             $scope.toUpdateArticle = res.data;
         });
     };
-
     $scope.updateArticle = function () {
         $http({
             url: APIurl + "/article/update",
@@ -29,7 +27,6 @@ app.controller('articleController', ['$scope', '$http', 'ArticleList', 'AreaList
             }
         });
     };
-
     $scope.addArticle = function () {
         $http({
             url: APIurl + "/article/add",
@@ -43,7 +40,6 @@ app.controller('articleController', ['$scope', '$http', 'ArticleList', 'AreaList
             $scope.articles.push($.extend({}, $scope.newArticle));
         });
     };
-
     $scope.deleteArticle = function () {
         $http({
             url: APIurl + "/article/delete",
@@ -57,7 +53,6 @@ app.controller('articleController', ['$scope', '$http', 'ArticleList', 'AreaList
             }
         });
     };
-
     $scope.assign = function () {
         $http({
             url: APIurl + '/article/assign',
@@ -73,7 +68,6 @@ app.controller('articleController', ['$scope', '$http', 'ArticleList', 'AreaList
             }
         });
     };
-
     $scope.revoke = function (articleId, idx) {
         $http({
             url: APIurl + '/article/revoke',
@@ -90,7 +84,6 @@ app.controller('articleController', ['$scope', '$http', 'ArticleList', 'AreaList
             $scope.selectedArticles.splice(idx, 1);
         });
     };
-
     $scope.$watch('selectedAreaId', function (newValue, oldValue) {
         if (newValue) {
             $http({

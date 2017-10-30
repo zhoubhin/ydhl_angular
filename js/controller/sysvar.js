@@ -1,7 +1,3 @@
-/**
- * Created by hbprotoss on 1/11/16.
- */
-
 app.controller('sysvarController', ['$scope', '$http', 'SysvarList', function ($scope, $http, SysvarList) {
     init();
     $scope.setEnable = function (id, value) {
@@ -18,7 +14,6 @@ app.controller('sysvarController', ['$scope', '$http', 'SysvarList', function ($
             }
         });
     };
-
     $scope.addSysvar = function () {
         $http({
             url: APIurl + '/sysvar/add',
@@ -32,7 +27,6 @@ app.controller('sysvarController', ['$scope', '$http', 'SysvarList', function ($
             $scope.sysvars.push($.extend({}, $scope.newSysvar));
         });
     };
-
     $scope.updateSysvar = function () {
         $http({
             url: APIurl + '/sysvar/update',
@@ -44,7 +38,6 @@ app.controller('sysvarController', ['$scope', '$http', 'SysvarList', function ($
             }
         });
     };
-
     $scope.deleteSysvar = function (sysvarId, idx) {
         $http({
             url: APIurl + '/sysvar/delete',
@@ -60,7 +53,6 @@ app.controller('sysvarController', ['$scope', '$http', 'SysvarList', function ($
             $scope.sysvars.splice(idx, 1);
         });
     };
-
     $scope.selectSysvarToUpdate = function () {
         for (var idx in $scope.sysvars) {
             var sysvar = $scope.sysvars[idx];
